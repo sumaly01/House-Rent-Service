@@ -32,6 +32,7 @@ favoriteController.addFavorite = async (req, res, next) => {
                 return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, 'property added to favorite list', null);
             }
         } else if (propertyStatus) {
+            const favorite = {}
             favorite.added_by = userId;
             favorite.array_of_property = [propertyId]
             const new_favorite = new favoriteSch(favorite);
@@ -58,9 +59,7 @@ favoriteController.getAllFavoriteUsers = async (req, res, next) => {
 favoriteController.getSingleFavoriteByUser = async (req, res, next) => {
     const userId = req.user.id
     try {
-        console.log(userId)
         var pulledData = await favoriteSch.findOne({ added_by: userId }).populate({ path: 'array_of_property', select: 'images address contact_person_name address email mobile_number price city state' });
-        console.log(pulledData)
         if (pulledData && pulledData._id) {
             return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, favoritesConfig.get, null)
         } else {

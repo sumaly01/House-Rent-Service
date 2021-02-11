@@ -14,7 +14,6 @@ const routes = require('./routes/index');
 const otherHelper = require('./helper/others.helper');
 
 
-// const auth = require('./helper/auth.helper');
 
 const app = express();
 
