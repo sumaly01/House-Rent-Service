@@ -16,6 +16,12 @@ validations.sanitizeRegister = (req, res, next) => {
       },
     },
     {
+      field: 'phone',
+      sanitize: {
+        trim: true,
+      },
+    },
+    {
       field: 'email',
       sanitize: {
         trim: true,
@@ -71,6 +77,15 @@ validations.validateRegister = async (req, res, next) => {
         {
           condition: 'IsEmail',
           msg: config.validate.isEmail,
+        },
+      ],
+    },
+    {
+      field: 'phone',
+      validate: [
+        {
+          condition: 'IsEmpty',
+          msg: config.validate.empty,
         },
       ],
     },
