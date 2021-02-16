@@ -5,6 +5,7 @@ const userSchema = new schema({
   name: { type: String },
   email: { type: String },
   password: { type: String },
+  phone: { type: String },
   gender: { type: String, enum: ['male', 'female', 'other'] },
   date_of_birth: { type: Date },
   email_verification_code: { type: String },
