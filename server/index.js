@@ -3,7 +3,6 @@
  *******************************************************/
 'use strict';
 
-require('dotenv').config();
 const http = require('http');
 const app = require('./app');
 const port = 4040;
