@@ -13,9 +13,12 @@ const mongoURI = require('./config/keys').mongoURI;
 const routes = require('./routes/index');
 const otherHelper = require('./helper/others.helper');
 
+const cors = require('cors')
+
 
 
 const app = express();
+
 
 // auth(passport);
 // Logger middleware
@@ -38,6 +41,8 @@ app.use(
 );
 // protect against HTTP Parameter Pollution attacks
 app.use(hpp());
+
+app.use(cors());
 
 
 // DB Config
