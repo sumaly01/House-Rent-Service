@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddPropertyComponent } from './add-property/add-property.component';
 import { ExploreComponent } from './explore/explore.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { HomepageComponent } from './homepage.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
+import { ViewPropertyComponent } from './view-property/view-property.component';
 
 
 const homepageRoutes: Routes = [
@@ -23,9 +25,20 @@ const homepageRoutes: Routes = [
         component: MyListingsComponent
     },
     {
+        path: 'add-property',
+        component: AddPropertyComponent
+    },
+
+    {
+        path: 'property',
+        component: ViewPropertyComponent
+    },
+    {
         path: 'favourites',
         component: FavouritesComponent
     },
+
+
 
 ];
 
