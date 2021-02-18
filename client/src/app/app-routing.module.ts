@@ -4,10 +4,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const appRoutes: Routes = [
+
+  {
+    path: '',
+    loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule)
+  },
+
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
+
+
+
 
 
 

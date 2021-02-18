@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AuthService } from './auth.service';
 
 
 
@@ -16,6 +17,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CommonModule,
     AuthRoutingModule,
     FormsModule
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class AuthModule { }
