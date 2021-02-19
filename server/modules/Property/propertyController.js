@@ -51,7 +51,7 @@ propertyController.getAllProperty = async (req, res, next) => {
             searchQuery = { ...searchQuery, numberOfRooms: { $lte: numberOfRooms } };
         }
         if (numberOfBathrooms) {
-            searchQuery = { ...searchQuery, numberOfBathrooms: { $lte: numberOfBathrooms } };
+            searchQuery = { ...searchQuery, numberOfBathrooms: { $gte: numberOfBathrooms } };
         }
         if (maximum_budget) {
             searchQuery = { ...searchQuery, price: { $lte: maximum_budget } };
