@@ -8,6 +8,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthService } from './auth.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,7 +17,8 @@ import { AuthService } from './auth.service';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [
     AuthService
