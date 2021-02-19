@@ -15,12 +15,18 @@ export class AuthService extends BaseService {
         public http: HttpClient,
         // public notifyService: NotifyService
     ) {
-        super('auth');
+        super('user');
     }
 
     login(data: User) {
         return this.http.post(this.url + 'login', data, this.getOptions())
     }
+
+    verify(data: any) {
+        console.log('Data--->', data)
+        return this.http.post(this.url + 'verify-email', data, this.getOptions())
+    }
+
 
 
     register(data: User) {
