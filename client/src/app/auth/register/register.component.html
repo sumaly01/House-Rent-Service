@@ -12,7 +12,7 @@
                             <input type="text" [(ngModel)]="user.name" name="name" class="form-control" #name="ngModel"
                                 placeholder="Name" required autofocus>
 
-                            <div *ngIf='name.invalid && name.dirty' class="danger">
+                            <div *ngIf='name.invalid && name.dirty' class="text-danger">
                                 Required Field**
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                                 class="form-control" placeholder="Email address" required autofocus
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
-                            <div class="danger" *ngIf="email.touched">
+                            <div class="text-danger" *ngIf="email.touched">
                                 <p *ngIf="email.errors?.required">Required field**</p>
                                 <p *ngIf="email.errors?.pattern">Not a valid Email**</p>
                             </div>
@@ -34,10 +34,11 @@
                         <div class="form-group">
                             <label>Phone</label>
                             <input type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
-                                class="form-control" placeholder="Phone Number" maxlength="10" minlength="10" required
-                                autofocus pattern="^[0-9]*$">
-                            <div *ngIf='phone.invalid && phone.dirty' class="danger">
-                                Required Field**
+                                class="form-control" placeholder="Phone Number" required autofocus
+                                pattern="^[0-9]{10}$">
+                            <div class="text-text-danger" *ngIf="mobile_number.touched">
+                                <p *ngIf="mobile_number.errors?.required">Required field**</p>
+                                <p *ngIf="mobile_number.errors?.pattern">Not a valid phone number**</p>
                             </div>
                         </div>
 
@@ -46,7 +47,7 @@
                             <label>Password</label>
                             <input type="password" class="form-control" [(ngModel)]="user.password" name="password"
                                 #password="ngModel" placeholder="Password" required>
-                            <div *ngIf='password.invalid && password.dirty' class="danger">
+                            <div *ngIf='password.invalid && password.dirty' class="text-danger">
                                 Required Field**
                             </div>
                         </div>
@@ -67,7 +68,7 @@
                             <label>Date of birth</label>
                             <input type="date" class="form-control" [(ngModel)]="user.date_of_birth"
                                 name="date_of_birth" #date_of_birth="ngModel" placeholder="date_of_birth" required>
-                            <div *ngIf='date_of_birth.invalid && date_of_birth.dirty' class="danger">
+                            <div *ngIf='date_of_birth.invalid && date_of_birth.dirty' class="text-danger">
                                 Required Field**
                             </div>
                         </div>
@@ -78,6 +79,8 @@
                             class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Register</button>
                         <hr class="my-4">
                     </form>
+
+
                     <a [routerLink]="['/auth/login']">
                         <p>Already Have and account? Click here!</p>
                     </a>
