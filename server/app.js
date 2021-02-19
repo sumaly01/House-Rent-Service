@@ -12,7 +12,7 @@ const httpStatus = require('http-status');
 const mongoURI = require('./config/keys').mongoURI;
 const routes = require('./routes/index');
 const otherHelper = require('./helper/others.helper');
-
+const cors = require('cors')
 
 
 const app = express();
@@ -38,7 +38,7 @@ app.use(
 );
 // protect against HTTP Parameter Pollution attacks
 app.use(hpp());
-
+app.use(cors())
 
 // DB Config
 mongoose.Promise = global.Promise;
