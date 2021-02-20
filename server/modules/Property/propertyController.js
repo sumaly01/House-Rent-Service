@@ -10,16 +10,10 @@ propertyController.saveProperty = async (req, res, next) => {
         if (req.files) {
             property.images = req.files
         }
-        if (property && property._id) {
-            const update = await propertySch.findByIdAndUpdate(property._id, { $set: property }, { new: true });
-            return otherHelper.sendResponse(res, httpStatus.OK, true, update, null, propertyConfig.save, null);
-        }
-        else {
-            property.added_by = req.user._id
-            const new_property = new propertySch(property);
-            const new_property_save = await new_property.save();
-            return otherHelper.sendResponse(res, httpStatus.OK, true, new_property_save, null, propertyConfig.save, null)
-        }
+        property.added_by = req.user._id
+        const new_property = new propertySch(property);
+        const new_property_save = await new_property.save();
+        return otherHelper.sendResponse(res, httpStatus.OK, true, new_property_save, null, propertyConfig.save, null)
     }
     catch (err) {
         next(err);
@@ -31,6 +25,7 @@ propertyController.editProperty = async (req, res, next) => {
         const property = req.body;
         const property_id = req.params.id
         if (req.files) {
+            delete property.images
             property.images = req.files
         }
         if (property && property._id) {
