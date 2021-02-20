@@ -10,7 +10,7 @@ propertyController.saveProperty = async (req, res, next) => {
         if (req.files) {
             property.images = req.files
         }
-        property.added_by = req.user._id
+        property.added_by = req.user.id
         const new_property = new propertySch(property);
         const new_property_save = await new_property.save();
         return otherHelper.sendResponse(res, httpStatus.OK, true, new_property_save, null, propertyConfig.save, null)
@@ -124,7 +124,7 @@ propertyController.deleteProperty = async (req, res, next) => {
 
 propertyController.getAllPropertyOfUser = async (req, res, next) => {
     try {
-        const userId = req.user._id
+        const userId = req.user.id
         let { page, size, populate, selectQuery, searchQuery, sortQuery } = otherHelper.parseFilters(req, 10, false);
         searchQuery = { ...searchQuery, is_active: true, added_by: userId }
         var pulledData = await propertySch.find(searchQuery);

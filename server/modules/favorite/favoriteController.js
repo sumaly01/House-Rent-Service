@@ -29,7 +29,7 @@ favoriteController.addFavorite = async (req, res, next) => {
                 favProperty.splice(propertyIndex, 1)
                 value.array_of_property = favProperty
                 let pulledData = await favoriteSch.findByIdAndUpdate({ _id: favId }, { $set: value }, { new: true });
-                return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, 'property added to favorite list', null);
+                return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, 'property is removed from favorite list', null);
             }
         } else if (propertyStatus) {
             const favorite = {}
@@ -48,7 +48,7 @@ favoriteController.addFavorite = async (req, res, next) => {
 favoriteController.getAllFavoriteUsers = async (req, res, next) => {
     try {
         let { page, size, populate, selectQuery, searchQuery, sortQuery } = otherHelper.parseFilters(req, 10, false);
-        populate = [{ path: 'array_of_property', select: 'images address contact_person_name address email mobile_number' }]
+        populate = [{ path: 'array_of_property', select: 'images address contact_person_name address email mobile_number ' }]
         let pulledData = await otherHelper.getQuerySendResponse(favoriteSch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
         return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, favoritesConfig.get, page, size, pulledData.totalData);
     } catch (err) {
@@ -59,7 +59,7 @@ favoriteController.getAllFavoriteUsers = async (req, res, next) => {
 favoriteController.getSingleFavoriteByUser = async (req, res, next) => {
     const userId = req.user.id
     try {
-        var pulledData = await favoriteSch.findOne({ added_by: userId }).populate({ path: 'array_of_property', select: 'images address contact_person_name address email mobile_number price city state' });
+        var pulledData = await favoriteSch.findOne({ added_by: userId }).populate({ path: 'array_of_property', select: 'images address contact_person_name address email mobile_number price property_type' });
         if (pulledData && pulledData._id) {
             return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, favoritesConfig.get, null)
         } else {
