@@ -17,6 +17,18 @@ const propertySchema = new schema({
     numberOfBathrooms: { type: Number, default: 0 },
     waterSupply: { type: String },
     parking: { type: Boolean, default: false },
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true,
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     is_deleted: { type: Boolean, required: true, default: false },
     is_active: { type: Boolean, required: true, default: true },
     added_at: { type: Date, default: Date.now },
