@@ -12,6 +12,8 @@ import { AddPropertyComponent } from './add-property/add-property.component';
 import { ViewPropertyComponent } from './view-property/view-property.component';
 import { FormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { PropertyService } from './services/property-services';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -31,7 +33,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     CommonModule,
     RouterModule,
     HomepageRoutingModule,
-    NgxDropzoneModule
-  ]
+    NgxDropzoneModule,
+    NgxPaginationModule
+  ],
+  providers: [PropertyService]
 })
 export class HomepageModule { }

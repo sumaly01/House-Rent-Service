@@ -36,6 +36,9 @@ app.use(
     extended: false,
   }),
 );
+
+app.use('/public', express.static(path.join(__dirname, 'public')))
+
 // protect against HTTP Parameter Pollution attacks
 app.use(hpp());
 app.use(cors())

@@ -6,7 +6,9 @@
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.2);
     margin: 2rem;
     padding: 0;
-    height: 400px;
+    height: 500px;
+    width: 1000px;
+    text-align: left;
 }
 
 .card:hover {
@@ -20,4 +22,23 @@
 
 .cardImg {
     width: auto;
+}
+
+.heading {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 800;
+    height: 80px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.address {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+span {
+    text-transform: uppercase;
+    font-weight: 800;
 }
