@@ -71,8 +71,11 @@ propertyController.getAllProperty = async (req, res, next) => {
         if (parking) {
             searchQuery = { ...searchQuery, parking: parking };
         }
-        let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
-        return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+        // let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
+        var pulledData = await propertySch.find(searchQuery);
+        return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, propertyConfig.get, null)
+        // return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+
     } catch (err) {
         next(err);
     }
@@ -124,8 +127,8 @@ propertyController.getAllPropertyOfUser = async (req, res, next) => {
         const userId = req.user._id
         let { page, size, populate, selectQuery, searchQuery, sortQuery } = otherHelper.parseFilters(req, 10, false);
         searchQuery = { ...searchQuery, is_active: true, added_by: userId }
-        let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
-        return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+        var pulledData = await propertySch.find(searchQuery);
+        return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, propertyConfig.get, null)
     } catch (err) {
         next(err);
     }

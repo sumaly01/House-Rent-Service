@@ -16,11 +16,16 @@ userController.register = async (req, res, next) => {
       try {
             let email = req.body.email && req.body.email.toLowerCase();
             const user = await userSch.findOne({ email: email });
+
+
+
             if (user) {
                   const errors = { email: 'Email already exists' };
                   const data = { email: email };
                   return otherHelper.sendResponse(res, httpStatus.CONFLICT, false, data, errors, errors.email, null);
             } else {
+
+
                   const newUser = req.body;
                   newUser.email = req.body.email.toLowerCase()
                   const salt = await bcrypt.genSalt(10);
@@ -35,10 +40,11 @@ userController.register = async (req, res, next) => {
                         subject: 'House Rent Service Verification Code',
                         text: `Dear ${newUser.name}, \n \n Your verification code is ${newUser.email_verification_code}`
                   };
-                  sendMail.send(mailOptions, next)
+                  await sendMail.send(mailOptions)
                   const userInfo = new userSch(newUser);
                   const userSave = await userInfo.save();
                   const { token, payload } = await userController.validLoginResponse(req, userSave, next);
+
                   return otherHelper.sendResponse(res, httpStatus.OK, true, payload, null, 'user register successful', token);
             }
       } catch (err) {
