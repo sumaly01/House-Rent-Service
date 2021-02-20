@@ -1,0 +1,23 @@
+.center {
+    text-align: center;
+}
+
+.card {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.2);
+    margin: 2rem;
+    padding: 0;
+    height: 400px;
+}
+
+.card:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.add-btn {
+    text-align: center;
+}
+
+.cardImg {
+    width: auto;
+}
