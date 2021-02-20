@@ -14,35 +14,21 @@ export class PropertyService extends BaseService {
     }
 
     getProperty() {
-        console.log('URL is---->', this.url)
         return this.http.get(this.url + 'all', this.getOptions());
     }
 
     getPropertyByUser() {
-        console.log('URL is---->', this.url)
         return this.http.get(this.url + 'user', this.getOptionsWithToken());
     }
 
-    // addArticle(data) {
-    //     return this.http.post(this.url + 'save', data, this.getOptionsWithToken());
-    // }
-
-
     getPropertyById(id) {
-        console.log('URL is---->', this.url)
-
         return this.http.get(this.url + 'single/' + id, this.getOptionsWithToken());
-
     }
-
-    // editArticle(data, id) {
-    //     return this.http.post(this.url + 'save/' + id, data, this.getOptionsWithToken());
-    // }
-
 
     deleteProperty(id) {
         return this.http.delete(this.url + id, this.getOptionsWithToken());
     }
+
 
 
 
@@ -55,7 +41,10 @@ export class PropertyService extends BaseService {
             const formData = new FormData();
 
             if (files.length) {
-                formData.append('images', files[0], files[0].name)
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('images', files[i], files[i].name)
+                }
+
             }
 
             for (let key in property) {

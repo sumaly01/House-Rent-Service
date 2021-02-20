@@ -22,8 +22,9 @@
                     <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">HOME</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/myListing']" routerLinkActive="active">MY LISTINGS</a>
+                <li class="nav-item" *ngIf="isLoggedIn()">
+                    <a class="nav-link" [routerLink]="['/myListing']" routerLinkActive="active">MY
+                        LISTINGS</a>
                 </li>
 
                 <li class="nav-item">
@@ -31,7 +32,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/favourites']" routerLinkActive="active">FAVOURITES</a>
+                    <a class="nav-link" [routerLink]="['/favourites']" *ngIf="isLoggedIn()"
+                        routerLinkActive="active">FAVOURITES</a>
                 </li>
 
             </ul>
@@ -41,10 +43,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        PROFILE <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        {{name}} <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Change Password <i class="fa fa-key"
+                        <a class="dropdown-item" routerLink="auth/change-password"> Change Password <i class="fa fa-key"
                                 aria-hidden="true"></i></a>
                         <a class="dropdown-item" (click)="logout()" routerLink="../">Logout <i class="fa fa-user"
                                 aria-hidden="true"></i></a>
@@ -64,6 +66,10 @@
                 <li class="nav-item">
                     <a class="nav-link" *ngIf="!isLoggedIn()" routerLink="../auth/login">LOGIN <i class="fa fa-user"
                             aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" *ngIf="!isLoggedIn()" routerLink="../auth/register">REGISTER <i
+                            class="fa fa-user" aria-hidden="true"></i></a>
                 </li>
             </ul>
 

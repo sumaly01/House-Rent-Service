@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PropertyService } from './services/property-services';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FavouritesService } from './services/favourites.services';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -36,6 +38,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxDropzoneModule,
     NgxPaginationModule
   ],
-  providers: [PropertyService]
+  providers: [PropertyService, FavouritesService, AuthService]
 })
 export class HomepageModule { }

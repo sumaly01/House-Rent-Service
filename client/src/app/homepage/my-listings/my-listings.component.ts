@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PropertyService } from '../services/property-services';
 
 
@@ -10,21 +11,33 @@ import { PropertyService } from '../services/property-services';
 export class MyListingsComponent implements OnInit {
   myPropertyList;
   path;
-  Url = "http://localhost:4040/"
+  Url = "http://192.168.1.68:4040/"
+  isData: boolean
 
-  constructor(private propertyService: PropertyService) {
+  constructor(private propertyService: PropertyService, private router: Router) {
     this.myPropertyList = []
 
+  }
+
+  open(id) {
+    this.router.navigateByUrl(`/property/${id}`)
   }
 
   ngOnInit() {
     this.propertyService.getPropertyByUser().subscribe((response: any) => {
       this.myPropertyList = response.data
-      // this.path = this.Url + this.myPropertyList.images[0]
-      // console.log(this.path)
+      console.log(response.data)
+
+      if (this.myPropertyList.length == 0) {
+        console.log("empty")
+        this.isData = false
+      }
+      else {
+        this.isData = true
+      }
 
 
-      console.log(this.myPropertyList)
+
     }, err => {
       console.log(err)
     })
