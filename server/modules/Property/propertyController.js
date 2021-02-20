@@ -26,6 +26,23 @@ propertyController.saveProperty = async (req, res, next) => {
     }
 }
 
+propertyController.editProperty = async (req, res, next) => {
+    try {
+        const property = req.body;
+        const property_id = req.params.id
+        if (req.files) {
+            property.images = req.files
+        }
+        if (property && property._id) {
+            const update = await propertySch.findByIdAndUpdate(property_id, { $set: property }, { new: true });
+            return otherHelper.sendResponse(res, httpStatus.OK, true, update, null, propertyConfig.save, null);
+        }
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
 propertyController.getAllProperty = async (req, res, next) => {
     try {
         let { page, size, populate, selectQuery, searchQuery, sortQuery } = otherHelper.parseFilters(req, 10, false);
