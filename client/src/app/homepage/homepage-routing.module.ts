@@ -14,12 +14,10 @@ const homepageRoutes: Routes = [
         path: '',
         component: HomepageComponent
     },
-
     {
         path: 'explore',
         component: ExploreComponent
     },
-
     {
         path: 'myListing',
         component: MyListingsComponent
@@ -28,16 +26,14 @@ const homepageRoutes: Routes = [
         path: 'add-property',
         component: AddPropertyComponent
     },
-
     {
-        path: 'property',
+        path: 'property/:id',
         component: ViewPropertyComponent
     },
     {
         path: 'favourites',
         component: FavouritesComponent
     },
-
 
 
 ];

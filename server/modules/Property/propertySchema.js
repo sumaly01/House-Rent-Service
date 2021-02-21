@@ -12,7 +12,7 @@ const propertySchema = new schema({
     images: [{ type: schema.Types.Mixed }],
     description: { type: String },
     location_coordinates: [{ type: String }],
-    propertyType: { type: String },
+    property_type: { type: String },
     numberOfRooms: { type: Number, default: 0 },
     numberOfBathrooms: { type: Number, default: 0 },
     waterSupply: { type: String },
