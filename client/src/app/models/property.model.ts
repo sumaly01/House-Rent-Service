@@ -13,7 +13,10 @@ export class Property {
     numberOfRooms: number;
     waterSupply: string;
     parking: boolean;
-    numberOfBathrooms: number
+    numberOfBathrooms: number;
+    lat: number;
+    lng: number
+
 }
 
 
