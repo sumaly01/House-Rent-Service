@@ -7,9 +7,11 @@ const propertyController = {};
 propertyController.saveProperty = async (req, res, next) => {
     try {
         const property = req.body;
-        console.log(req.body)
         if (req.files) {
             property.images = req.files
+        }
+        if (req.files.length == 0) {
+            return otherHelper.sendResponse(res, httpStatus.BAD_REQUEST, false, null, null, 'image field required', null);
         }
         property.added_by = req.user.id
         const new_property = new propertySch(property);

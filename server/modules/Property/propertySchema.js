@@ -11,7 +11,6 @@ const propertySchema = new schema({
     price: { type: Number, default: 0 },
     images: [{ type: schema.Types.Mixed }],
     description: { type: String },
-    // location_coordinates: [{ type: String }],
     property_type: { type: String },
     numberOfRooms: { type: Number, default: 0 },
     numberOfBathrooms: { type: Number, default: 0 },
