@@ -17,15 +17,21 @@
 
             <div class="col-lg-4 md-4"
                 *ngFor="let property of myPropertyList | paginate: { itemsPerPage: 6, currentPage: p }">
+                <div class="card">
+                    <div (click)="open(property._id)">
+                        <h3 class="heading">{{property.property_type}}</h3>
+                        <img class="cardImg" *ngIf="property.images" src="{{Url + property.images[0].path}}" />
+                        <p class="address mt-3"><span>Address: </span> {{property.address}}</p>
+                        <p class="address"><span>Name: </span> {{property.contact_person_name}}</p>
+                        <p class="address"><span>Contact: </span> {{property.mobile_number}}</p>
+                        <p class="address"><span>Price: </span> {{property.price}}</p>
 
-                <div class="card" (click)="open(property._id)">
-                    <h3 class="heading">{{property.property_type}}</h3>
-                    <img class="cardImg" src="{{Url + property.images[0].path}}" />
-                    <p class="address mt-3"><span>Address: </span> {{property.address}}</p>
-                    <p class="address"><span>Name: </span> {{property.contact_person_name}}</p>
-                    <p class="address"><span>Contact: </span> {{property.mobile_number}}</p>
-                    <p class="address"><span>Price: </span> {{property.price}}</p>
+                    </div>
+                    <button class="btn btn-danger fav mb-2" (click)="delete(property._id)"> Delete <i
+                            class="fa fa-trash ml-2"></i>
+                    </button>
                 </div>
+
             </div>
 
         </div>
@@ -40,3 +46,7 @@
     </div>
 
 </main>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

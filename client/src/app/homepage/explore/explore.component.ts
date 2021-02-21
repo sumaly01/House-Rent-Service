@@ -14,8 +14,18 @@ export class ExploreComponent implements OnInit {
   Url = "http://localhost:4040/"
   p: number = 1;
 
+  searchP;
+
   constructor(private propertyService: PropertyService, public router: Router,
     private favouriteService: FavouritesService, private toastr: ToastrService) {
+    this.searchP = {
+      address: "",
+      propertyType: "",
+      numberOfRooms: "",
+      maximum_budget: "",
+      city: "",
+      parking: ""
+    }
   }
 
   ngOnInit() {
@@ -26,6 +36,17 @@ export class ExploreComponent implements OnInit {
       console.log(err)
     })
   }
+
+  search() {
+    this.propertyService.getPropertyFiltered(this.searchP).subscribe((response: any) => {
+      this.allProperties = response.data
+      console.log(this.allProperties)
+    }, err => {
+      console.log(err)
+    })
+  }
+
+
 
   open(id) {
     this.router.navigateByUrl(`/property/${id}`)

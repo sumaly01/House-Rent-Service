@@ -13,13 +13,19 @@
 
             <div class="wrapper">
                 <div class="search-container">
-                    <input type="text" class="search" placeholder="Address">
-                    <input type="text" class="date-from" placeholder="Property Type">
-                    <input type="text" class="date-to" placeholder="Minimum Rooms">
-                    <input type="text" class="date-to" placeholder="Maximum Budge">
-                    <input type="text" class="date-to" placeholder="City">
-                    <input type="text" class="date-to" placeholder="Parking">
-                    <button type="submit" class="button">Search</button>
+                    <input type="text" class="search" [(ngModel)]="searchP.address" name="address"
+                        placeholder="Address">
+                    <input type="text" class="date-from" [(ngModel)]="searchP.propertyType" name="propertyType"
+                        placeholder="Property Type">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.numberOfRooms" name="numberOfRooms"
+                        placeholder="Minimum Rooms">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.maximum_budget" name="maximum_budget"
+                        placeholder="Maximum Budget">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.city" name="city" placeholder="City">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.parking" name="parking"
+                        placeholder="Parking">
+                    <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
+                            aria-hidden="true"></i></button>
                 </div>
             </div>
 
@@ -56,3 +62,7 @@
 
     </div>
 </main>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

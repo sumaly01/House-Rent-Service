@@ -7,6 +7,7 @@ const propertyController = {};
 propertyController.saveProperty = async (req, res, next) => {
     try {
         const property = req.body;
+        console.log(req.body)
         if (req.files) {
             property.images = req.files
         }
