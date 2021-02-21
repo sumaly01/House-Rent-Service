@@ -33,6 +33,10 @@ export class AuthService extends BaseService {
         return this.http.post(this.url + 'register', data, this.getOptions())
     }
 
+    changePass(passwords) {
+        return this.http.post(this.url + 'change-password', passwords, this.getOptionsWithToken())
+    }
+
 
     isLoggedIn() {
 

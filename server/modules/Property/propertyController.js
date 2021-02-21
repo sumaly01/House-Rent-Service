@@ -10,15 +10,27 @@ propertyController.saveProperty = async (req, res, next) => {
         if (req.files) {
             property.images = req.files
         }
-        if (property && property._id) {
-            const update = await propertySch.findByIdAndUpdate(property._id, { $set: property }, { new: true });
-            return otherHelper.sendResponse(res, httpStatus.OK, true, update, null, propertyConfig.save, null);
+        property.added_by = req.user.id
+        const new_property = new propertySch(property);
+        const new_property_save = await new_property.save();
+        return otherHelper.sendResponse(res, httpStatus.OK, true, new_property_save, null, propertyConfig.save, null)
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+propertyController.editProperty = async (req, res, next) => {
+    try {
+        const property = req.body;
+        const property_id = req.params.id
+        if (req.files) {
+            delete property.images
+            property.images = req.files
         }
-        else {
-            property.added_by = req.user._id
-            const new_property = new propertySch(property);
-            const new_property_save = await new_property.save();
-            return otherHelper.sendResponse(res, httpStatus.OK, true, new_property_save, null, propertyConfig.save, null)
+        if (property && property._id) {
+            const update = await propertySch.findByIdAndUpdate(property_id, { $set: property }, { new: true });
+            return otherHelper.sendResponse(res, httpStatus.OK, true, update, null, propertyConfig.save, null);
         }
     }
     catch (err) {
@@ -51,7 +63,7 @@ propertyController.getAllProperty = async (req, res, next) => {
             searchQuery = { ...searchQuery, numberOfRooms: { $lte: numberOfRooms } };
         }
         if (numberOfBathrooms) {
-            searchQuery = { ...searchQuery, numberOfBathrooms: { $lte: numberOfBathrooms } };
+            searchQuery = { ...searchQuery, numberOfBathrooms: { $gte: numberOfBathrooms } };
         }
         if (maximum_budget) {
             searchQuery = { ...searchQuery, price: { $lte: maximum_budget } };
@@ -59,8 +71,11 @@ propertyController.getAllProperty = async (req, res, next) => {
         if (parking) {
             searchQuery = { ...searchQuery, parking: parking };
         }
-        let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
-        return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+        // let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
+        var pulledData = await propertySch.find(searchQuery);
+        return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, propertyConfig.get, null)
+        // return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+
     } catch (err) {
         next(err);
     }
@@ -109,11 +124,11 @@ propertyController.deleteProperty = async (req, res, next) => {
 
 propertyController.getAllPropertyOfUser = async (req, res, next) => {
     try {
-        const userId = req.user._id
+        const userId = req.user.id
         let { page, size, populate, selectQuery, searchQuery, sortQuery } = otherHelper.parseFilters(req, 10, false);
         searchQuery = { ...searchQuery, is_active: true, added_by: userId }
-        let pulledData = await otherHelper.getQuerySendResponse(propertySch, page, size, sortQuery, searchQuery, selectQuery, next, populate);
-        return otherHelper.paginationSendResponse(res, httpStatus.OK, true, pulledData.data, propertyConfig.gets, page, size, pulledData.totalData);
+        var pulledData = await propertySch.find(searchQuery);
+        return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, propertyConfig.get, null)
     } catch (err) {
         next(err);
     }

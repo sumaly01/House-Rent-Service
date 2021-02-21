@@ -9,11 +9,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthService } from './auth.service';
 import { RouterModule } from '@angular/router';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, VerifyEmailComponent, ForgotPasswordComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, RegisterComponent, VerifyEmailComponent, ForgotPasswordComponent, ResetPasswordComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

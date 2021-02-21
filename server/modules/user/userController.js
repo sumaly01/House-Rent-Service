@@ -13,33 +13,42 @@ const { loginLogController } = require('../loginlogs/loginlogController');
 const userController = {};
 
 userController.register = async (req, res, next) => {
+      try {
+            let email = req.body.email && req.body.email.toLowerCase();
+            const user = await userSch.findOne({ email: email });
 
-      let email = req.body.email && req.body.email.toLowerCase();
-      const user = await userSch.findOne({ email: email });
-      if (user) {
-            const errors = { email: 'Email already exists' };
-            const data = { email: email };
-            return otherHelper.sendResponse(res, httpStatus.CONFLICT, false, data, errors, errors.email, null);
-      } else {
-            const newUser = req.body;
-            newUser.email = req.body.email.toLowerCase()
-            const salt = await bcrypt.genSalt(10);
-            const hash = await bcrypt.hash(newUser.password, salt);
-            newUser.password = hash;
-            newUser.email_verification_code = otherHelper.generateRandomHexString(6);
-            newUser.email_verified = false;
-            newUser.last_password_change_date = new Date();
-            newUser.email_verified_request_date = new Date();
-            const mailOptions = {
-                  to: newUser.email,
-                  subject: 'House Rent Service Verification Code',
-                  text: `Dear ${newUser.name}, \n \n Your verification code is ${newUser.email_verification_code}`
-            };
-            sendMail.send(mailOptions, next)
-            const userInfo = new userSch(newUser);
-            const userSave = await userInfo.save();
-            const { token, payload } = await userController.validLoginResponse(req, userSave, next);
-            return otherHelper.sendResponse(res, httpStatus.OK, true, payload, null, 'user register successful', token);
+
+
+            if (user) {
+                  const errors = { email: 'Email already exists' };
+                  const data = { email: email };
+                  return otherHelper.sendResponse(res, httpStatus.CONFLICT, false, data, errors, errors.email, null);
+            } else {
+
+
+                  const newUser = req.body;
+                  newUser.email = req.body.email.toLowerCase()
+                  const salt = await bcrypt.genSalt(10);
+                  const hash = await bcrypt.hash(newUser.password, salt);
+                  newUser.password = hash;
+                  newUser.email_verification_code = otherHelper.generateRandomHexString(6);
+                  newUser.email_verified = false;
+                  newUser.last_password_change_date = new Date();
+                  newUser.email_verified_request_date = new Date();
+                  const mailOptions = {
+                        to: newUser.email,
+                        subject: 'House Rent Service Verification Code',
+                        text: `Dear ${newUser.name}, \n \n Your verification code is ${newUser.email_verification_code}`
+                  };
+                  await sendMail.send(mailOptions)
+                  const userInfo = new userSch(newUser);
+                  const userSave = await userInfo.save();
+                  const { token, payload } = await userController.validLoginResponse(req, userSave, next);
+
+                  return otherHelper.sendResponse(res, httpStatus.OK, true, payload, null, 'user register successful', token);
+            }
+      } catch (err) {
+            next(err)
       }
 
 };

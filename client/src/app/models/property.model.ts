@@ -3,6 +3,7 @@ export class Property {
     contact_person_name: string;
     state: string;
     city: string;
+    property_type: string;
     address: string;
     mobile_number: string;
     email: string;
@@ -12,6 +13,7 @@ export class Property {
     numberOfRooms: number;
     waterSupply: string;
     parking: boolean;
+    numberOfBathrooms: number
 }
 
 

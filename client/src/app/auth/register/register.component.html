@@ -36,9 +36,9 @@
                             <input type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
                                 class="form-control" placeholder="Phone Number" required autofocus
                                 pattern="^[0-9]{10}$">
-                            <div class="text-text-danger" *ngIf="mobile_number.touched">
-                                <p *ngIf="mobile_number.errors?.required">Required field**</p>
-                                <p *ngIf="mobile_number.errors?.pattern">Not a valid phone number**</p>
+                            <div class="text-text-danger" *ngIf="phone.touched">
+                                <p *ngIf="phone.errors?.required">Required field**</p>
+                                <p *ngIf="phone.errors?.pattern">Not a valid phone number**</p>
                             </div>
                         </div>
 
@@ -81,12 +81,21 @@
                     </form>
 
 
-                    <a [routerLink]="['/auth/login']">
-                        <p>Already Have and account? Click here!</p>
+                    <a href="/auth/login" (click)="passTheSalt()">
+                        <p>Already have a account?</p>
                     </a>
-                    <a [routerLink]="['/home']">
+
+
+
+                    <a href="/home" (click)="passTheSalt()">
                         <p>Home</p>
                     </a>
+
+
+
+
+
+
                 </div>
             </div>
         </div>

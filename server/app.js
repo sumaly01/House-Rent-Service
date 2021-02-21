@@ -12,13 +12,10 @@ const httpStatus = require('http-status');
 const mongoURI = require('./config/keys').mongoURI;
 const routes = require('./routes/index');
 const otherHelper = require('./helper/others.helper');
-
 const cors = require('cors')
 
 
-
 const app = express();
-
 
 // auth(passport);
 // Logger middleware
@@ -39,11 +36,12 @@ app.use(
     extended: false,
   }),
 );
+
+app.use('/public', express.static(path.join(__dirname, 'public')))
+
 // protect against HTTP Parameter Pollution attacks
 app.use(hpp());
-
-app.use(cors());
-
+app.use(cors())
 
 // DB Config
 mongoose.Promise = global.Promise;
@@ -59,7 +57,7 @@ mongoose.connect(mongoURI, {
   if (err) {
     console.log(`| MongoDB URL : ${mongoURI}`);
     console.log('|--------------------------------------------');
-    console.log('| DataBase Connection Failed')
+    console.log('| DataBase Connection Failed', err)
   } else {
     console.log(`| MongoDB URL : ${mongoURI}`);
     console.log('| MongoDB Connected');

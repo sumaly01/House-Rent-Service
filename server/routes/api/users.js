@@ -14,6 +14,4 @@ router.post('/forgot-password', userController.ForgotPassword)
 router.post('/reset-password', userController.ResetPassword)
 
 
-
-
 module.exports = router;

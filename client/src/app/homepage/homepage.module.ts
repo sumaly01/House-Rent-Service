@@ -12,6 +12,10 @@ import { AddPropertyComponent } from './add-property/add-property.component';
 import { ViewPropertyComponent } from './view-property/view-property.component';
 import { FormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { PropertyService } from './services/property-services';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FavouritesService } from './services/favourites.services';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -31,7 +35,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     CommonModule,
     RouterModule,
     HomepageRoutingModule,
-    NgxDropzoneModule
-  ]
+    NgxDropzoneModule,
+    NgxPaginationModule
+  ],
+  providers: [PropertyService, FavouritesService, AuthService]
 })
 export class HomepageModule { }

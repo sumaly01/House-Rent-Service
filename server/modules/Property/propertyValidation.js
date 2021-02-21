@@ -63,7 +63,7 @@ validation.sanitize = (req, res, next) => {
             },
         },
         {
-            field: 'propertyType',
+            field: 'property_type',
             sanitize: {
                 trim: true
             },
@@ -171,7 +171,7 @@ validation.validate = (req, res, next) => {
             ],
         },
         {
-            field: 'propertyType',
+            field: 'property_type',
             validate: [
                 {
                     condition: 'IsEmpty',
