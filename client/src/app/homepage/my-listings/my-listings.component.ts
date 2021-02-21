@@ -11,7 +11,7 @@ import { PropertyService } from '../services/property-services';
 export class MyListingsComponent implements OnInit {
   myPropertyList;
   path;
-  Url = "http://192.168.1.68:4040/"
+  Url = "http://localhost:4040/"
   isData: boolean
 
   constructor(private propertyService: PropertyService, private router: Router) {
