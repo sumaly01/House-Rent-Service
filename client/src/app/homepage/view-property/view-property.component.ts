@@ -20,8 +20,7 @@ export class ViewPropertyComponent implements OnInit {
   constructor(private propertyService: PropertyService, public activeRouter: ActivatedRoute) {
     this.propertyId = this.activeRouter.snapshot.params['id'];
     this.property = {}
-    // this.lat = 51.673858;
-    // this.lng = 7.815982;
+
 
   }
 
