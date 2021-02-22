@@ -51,7 +51,23 @@
             <div>
                 <p> <span>Description: </span> {{property.description}}</p>
             </div>
+            <div><span>property location: </span></div>
+            <div *ngIf="property.lat && property.lng" class="mb-4">
+                <agm-map [latitude]="property.lat" [longitude]="property.lng" [zoom]=8 [disableDefaultUI]="false"
+                    [zoomControl]="false">
+
+                    <agm-marker [latitude]="property.lat" [longitude]="property.lng">
+
+                    </agm-marker>
+
+
+                </agm-map>
+            </div>
         </div>
 
     </div>
 </main>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

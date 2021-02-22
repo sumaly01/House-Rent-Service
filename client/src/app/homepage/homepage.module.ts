@@ -16,6 +16,7 @@ import { PropertyService } from './services/property-services';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FavouritesService } from './services/favourites.services';
 import { AuthService } from '../auth/auth.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -36,7 +37,13 @@ import { AuthService } from '../auth/auth.service';
     RouterModule,
     HomepageRoutingModule,
     NgxDropzoneModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
+    })
+
+
+
   ],
   providers: [PropertyService, FavouritesService, AuthService]
 })

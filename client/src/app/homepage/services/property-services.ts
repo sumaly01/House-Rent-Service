@@ -17,6 +17,13 @@ export class PropertyService extends BaseService {
         return this.http.get(this.url + 'all', this.getOptions());
     }
 
+    getPropertyFiltered(filter) {
+        console.log(filter)
+        return this.http.get(this.url + 'all' + `?address=${filter.address}&propertyType=${filter.propertyType}&numberOfRooms=${filter.numberOfRooms}&maximum_budget=${filter.maximum_budget}&city=${filter.city}&parking=${filter.parking}`, this.getOptions());
+
+
+    }
+
     getPropertyByUser() {
         return this.http.get(this.url + 'user', this.getOptionsWithToken());
     }
@@ -26,7 +33,7 @@ export class PropertyService extends BaseService {
     }
 
     deleteProperty(id) {
-        return this.http.delete(this.url + id, this.getOptionsWithToken());
+        return this.http.delete(this.url + 'delete/' + id, this.getOptionsWithToken());
     }
 
 

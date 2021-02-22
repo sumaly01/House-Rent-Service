@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Property } from '../../models/property.model'
 import { PropertyService } from '../services/property-services';
+import { MouseEvent } from "@agm/core";
+
 
 @Component({
   selector: 'app-add-property',
@@ -12,7 +14,26 @@ import { PropertyService } from '../services/property-services';
 export class AddPropertyComponent implements OnInit {
   property: Property;
   files: File[] = [];
-  states = ['Provience no 1', 'Provience no 2', 'Bagmati Provience', 'Gandaki Provience', 'Lumbini Provience', 'Karnali Provience', 'Sudurpashchim']
+  zoom: number = 8;
+
+  lat: number = 27.7172;
+  lng: number = 85.3240;
+  marker: any = {}
+
+
+
+  mapClicked($event: MouseEvent) {
+    this.marker = {
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+    };
+    console.log(this.marker)
+  }
+
+
+
+
+  states = ['Province no 1', 'Province no 2', 'Bagmati Province', 'Gandaki Province', 'Lumbini Province', 'Karnali Province', 'Sudurpashchim']
   constructor(private propertyService: PropertyService, private toastr: ToastrService, private router: Router) {
     this.property = new Property()
   }
@@ -22,7 +43,14 @@ export class AddPropertyComponent implements OnInit {
 
   submit() {
     console.log(this.files)
-    console.log(this.property)
+    if (this.marker.lat && this.marker.lng) {
+      this.property.lat = this.marker.lat
+      this.property.lng = this.marker.lng
+    }
+
+    // console.log(this.property)
+
+
     this.propertyService.uploadProperty(this.property, this.files, 'POST').subscribe((response: any) => {
       console.log(response)
       this.toastr.success('The property has been added successfully')

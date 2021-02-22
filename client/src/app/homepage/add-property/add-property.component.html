@@ -269,6 +269,20 @@
                                 </div>
                             </div>
 
+                            <div class="mb-4">
+                                <label>Select Location</label>
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+                                    [zoomControl]="false" (mapClick)="mapClicked($event)">
+
+                                    <agm-marker [latitude]="marker.lat" [longitude]="marker.lng">
+
+                                    </agm-marker>
+
+
+                                </agm-map>
+                            </div>
+
+
 
 
 
@@ -289,6 +303,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
 
 
