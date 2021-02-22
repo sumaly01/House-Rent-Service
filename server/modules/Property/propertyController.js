@@ -60,7 +60,7 @@ propertyController.getAllProperty = async (req, res, next) => {
             searchQuery = { city: { $regex: city, $options: 'i' }, ...searchQuery };
         }
         if (propertyType) {
-            searchQuery = { propertyType: { $regex: propertyType, $options: 'i' }, ...searchQuery };
+            searchQuery = { property_type: { $regex: propertyType, $options: 'i' }, ...searchQuery };
         }
         if (numberOfRooms) {
             searchQuery = { ...searchQuery, numberOfRooms: { $lte: numberOfRooms } };
