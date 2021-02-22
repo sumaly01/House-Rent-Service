@@ -86,7 +86,8 @@ input {
   align-self: auto;
 }
 
-input {
+input,
+select {
   order: 0;
   flex: 1 1 auto;
   align-self: auto;

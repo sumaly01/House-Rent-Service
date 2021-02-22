@@ -29,7 +29,7 @@ export class PropertyService extends BaseService {
     }
 
     getPropertyById(id) {
-        return this.http.get(this.url + 'single/' + id, this.getOptionsWithToken());
+        return this.http.get(this.url + 'single/' + id, this.getOptions());
     }
 
     deleteProperty(id) {
