@@ -22,8 +22,15 @@
                     <input type="text" class="date-to" [(ngModel)]="searchP.maximum_budget" name="maximum_budget"
                         placeholder="Maximum Budget">
                     <input type="text" class="date-to" [(ngModel)]="searchP.city" name="city" placeholder="City">
-                    <input type="text" class="date-to" [(ngModel)]="searchP.parking" name="parking"
-                        placeholder="Parking">
+                    <!-- <input type="text" class="date-to" [(ngModel)]="searchP.parking" name="parking"
+                        placeholder="Parking"> -->
+
+                    <select class="date-to" name="parking" [(ngModel)]="searchP.parking">
+                        <option disabled>Parking</option>
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
+                    </select>
+
                     <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
                             aria-hidden="true"></i></button>
                 </div>

@@ -13,11 +13,24 @@ export class ExploreComponent implements OnInit {
   allProperties: [object]
   Url = "http://localhost:4040/"
   p: number = 1;
+  parkingList
 
   searchP;
 
   constructor(private propertyService: PropertyService, public router: Router,
     private favouriteService: FavouritesService, private toastr: ToastrService) {
+
+    this.parkingList = [
+      "",
+      {
+        key: "Available",
+        value: true
+      },
+      {
+        key: "Not Available",
+        value: false
+      }]
+
     this.searchP = {
       address: "",
       propertyType: "",

@@ -13,6 +13,7 @@ export class ViewPropertyComponent implements OnInit {
   property;
   Url = "http://localhost:4040/";
   images;
+<<<<<<< HEAD
   lat: number;
   lng: number;
 
@@ -24,6 +25,16 @@ export class ViewPropertyComponent implements OnInit {
     this.property = {};
     // this.lat = 51.673858;
     // this.lng = 7.815982;
+=======
+  lat: number
+  lng: number
+
+  constructor(private propertyService: PropertyService, public activeRouter: ActivatedRoute) {
+    this.propertyId = this.activeRouter.snapshot.params['id'];
+    this.property = {}
+
+
+>>>>>>> a386b165532aed543c3638551c490895a2e97c93
   }
 
   ngOnInit() {

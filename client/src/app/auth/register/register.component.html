@@ -30,6 +30,7 @@
               </div>
             </div>
 
+<<<<<<< HEAD
             <div class="form-group">
               <label>Phone</label>
               <input type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" class="form-control"
@@ -39,6 +40,18 @@
                 <p *ngIf="phone.errors?.pattern">Not a valid phone number**</p>
               </div>
             </div>
+=======
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
+                                class="form-control" placeholder="Phone Number" maxlength="10" required autofocus
+                                pattern="^[0-9]{10}$">
+                            <div class="text-danger" *ngIf="phone.touched">
+                                <p *ngIf="phone.errors?.required">Required field**</p>
+                                <p *ngIf="phone.errors?.pattern">Not a valid phone number**</p>
+                            </div>
+                        </div>
+>>>>>>> a386b165532aed543c3638551c490895a2e97c93
 
 
             <div class="form-group">
@@ -50,6 +63,7 @@
               </div>
             </div>
 
+<<<<<<< HEAD
             <div class="form-group">
               <label>Gender</label>
               <select class="form-control" aria-label="Default select example" [(ngModel)]="user.gender" name="gender"
@@ -70,6 +84,31 @@
                 Required Field**
               </div>
             </div>
+=======
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control" aria-label="Default select example" [(ngModel)]="user.gender"
+                                name="gender" #gender="ngModel" required>
+                                <option disabled selected>Please select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Others</option>
+                            </select>
+                            <div *ngIf='user.invalid && user.dirty' class="text-danger">
+                                Required Field**
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label>Date of birth</label>
+                            <input type="date" class="form-control" [(ngModel)]="user.date_of_birth"
+                                name="date_of_birth" #date_of_birth="ngModel" placeholder="Date of" required>
+                            <div *ngIf='date_of_birth.invalid && date_of_birth.dirty' class="text-danger">
+                                Required Field**
+                            </div>
+                        </div>
+>>>>>>> a386b165532aed543c3638551c490895a2e97c93
 
 
 
@@ -79,6 +118,7 @@
           </form>
 
 
+<<<<<<< HEAD
           <a href="/auth/login" (click)="passTheSalt()">
             <p>Already have a account?</p>
           </a>
@@ -88,6 +128,17 @@
           <a href="/home" (click)="passTheSalt()">
             <p>Home</p>
           </a>
+=======
+                    <a [routerLink]="['/auth/login']">
+                        <p>Already have a account?</p>
+                    </a>
+
+
+
+                    <a [routerLink]="['/']">
+                        <p>Home</p>
+                    </a>
+>>>>>>> a386b165532aed543c3638551c490895a2e97c93
 
 
 
