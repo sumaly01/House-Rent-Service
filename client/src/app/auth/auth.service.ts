@@ -37,6 +37,13 @@ export class AuthService extends BaseService {
         return this.http.post(this.url + 'change-password', passwords, this.getOptionsWithToken())
     }
 
+    forgotPass(user) {
+        return this.http.post(this.url + 'forgot-password', user, this.getOptions())
+    }
+    resetPass(user) {
+        return this.http.post(this.url + 'reset-password', user, this.getOptions())
+    }
+
 
     isLoggedIn() {
 
