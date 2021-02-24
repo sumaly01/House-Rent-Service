@@ -1,36 +1,36 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomepageComponent } from './homepage.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { RouterModule } from '@angular/router';
-import { HomepageRoutingModule } from './homepage-routing.module';
-import { ExploreComponent } from './explore/explore.component';
-import { FavouritesComponent } from './favourites/favourites.component';
-import { MyListingsComponent } from './my-listings/my-listings.component';
-import { AddPropertyComponent } from './add-property/add-property.component';
-import { ViewPropertyComponent } from './view-property/view-property.component';
-import { FormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { PropertyService } from './services/property-services';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { FavouritesService } from './services/favourites.services';
-import { AuthService } from '../auth/auth.service';
-import { AgmCoreModule } from '@agm/core';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HomepageComponent } from "./homepage.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterComponent } from "./footer/footer.component";
+import { RouterModule } from "@angular/router";
+import { HomepageRoutingModule } from "./homepage-routing.module";
+import { ExploreComponent } from "./explore/explore.component";
+import { FavouritesComponent } from "./favourites/favourites.component";
+import { MyListingsComponent } from "./my-listings/my-listings.component";
+import { AddPropertyComponent } from "./add-property/add-property.component";
+import { EditPropertyComponent } from "./edit-property/edit-property.component";
+import { ViewPropertyComponent } from "./view-property/view-property.component";
+import { FormsModule } from "@angular/forms";
+import { NgxDropzoneModule } from "ngx-dropzone";
+import { PropertyService } from "./services/property-services";
+import { NgxPaginationModule } from "ngx-pagination";
+import { FavouritesService } from "./services/favourites.services";
+import { AuthService } from "../auth/auth.service";
+import { AgmCoreModule } from "@agm/core";
 
 @NgModule({
   declarations: [
     HomepageComponent,
     NavbarComponent,
-    FooterComponent, ExploreComponent,
+    FooterComponent,
+    ExploreComponent,
     FavouritesComponent,
     MyListingsComponent,
     AddPropertyComponent,
-    ViewPropertyComponent
-  ]
-  ,
+    ViewPropertyComponent,
+    EditPropertyComponent,
+  ],
   imports: [
     FormsModule,
     CommonModule,
@@ -39,12 +39,9 @@ import { AgmCoreModule } from '@agm/core';
     NgxDropzoneModule,
     NgxPaginationModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
-    })
-
-
-
+      apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
+    }),
   ],
-  providers: [PropertyService, FavouritesService, AuthService]
+  providers: [PropertyService, FavouritesService, AuthService],
 })
-export class HomepageModule { }
+export class HomepageModule {}

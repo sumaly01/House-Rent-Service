@@ -42,6 +42,7 @@ propertyController.editProperty = async (req, res, next) => {
   try {
     const property = req.body;
     const property_id = req.params.id;
+    console.log("PROPERTY EDIT");
     if (req.files) {
       delete property.images;
       property.images = req.files;
