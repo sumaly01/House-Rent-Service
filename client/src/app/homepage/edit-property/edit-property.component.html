@@ -10,7 +10,7 @@
       <div class="col-sm-9 col-md-8 col-lg-8 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
-            <h5 class="card-title text-center">Add a property</h5>
+            <h5 class="card-title text-center">Edit property</h5>
             <hr class="my-4">
 
 
@@ -44,8 +44,8 @@
                   <div class="col-md-9">
 
                     <select class="form-control" [(ngModel)]="property.state" name="state" #state="ngModel">
-                      <option disabled selected>Please select State</option>
-                      <option *ngFor="let state of states" selected value="{{state}}">{{state}}
+                      <option disabled>Please select State</option>
+                      <option *ngFor="let state of states" selected value="state">{{state}}
                       </option>
 
                     </select>
@@ -210,7 +210,7 @@
                   <div class="col-md-9">
                     <select class="form-control" [(ngModel)]="property.waterSupply" name="waterSupply"
                       #waterSupply="ngModel">
-                      <option disabled selected>Please select water supply state</option>
+                      <option disabled>Please select water supply state</option>
                       <option value=true>Available</option>
                       <option value=false>Not Available</option>
                     </select>
@@ -235,7 +235,7 @@
                   <div class="col-md-9">
 
                     <select class="form-control" [(ngModel)]="property.parking" name="parking" #parking="ngModel">
-                      <option disabled selected>Please select Parking State</option>
+                      <option disabled>Please select Parking State</option>
                       <option value=true>Available</option>
                       <option value=false>Not Available</option>
                     </select>
@@ -299,17 +299,10 @@
               </div>
 
 
-
-
-
-
-
-
-
               <div class="row mt-4">
                 <div class="col-md-6">
                   <button [disabled]="propertyForm.invalid" (click)="submit()"
-                    class="btn btn-md btn-success btn-block submit text-uppercase" type="submit">Add</button>
+                    class="btn btn-md btn-success btn-block submit text-uppercase" type="submit">Edit</button>
                 </div>
 
                 <div class="col-md-6">
