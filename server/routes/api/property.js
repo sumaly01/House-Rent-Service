@@ -23,7 +23,7 @@ router.patch(
 );
 router.get("/all", propertyController.getAllProperty);
 router.get("/single/:property_id", propertyController.getSingleProperty);
-router.get("/user", authentication, propertyController.getAllPropertyOfUser);
+router.get("/user", authentication, propertyController.getAllPropertyOfUser); //my listings
 router.delete(
   "/delete/:property_id",
   authentication,

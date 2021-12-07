@@ -29,7 +29,7 @@ favoriteController.addFavorite = async (req, res, next) => {
                 favProperty.splice(propertyIndex, 1)
                 value.array_of_property = favProperty
                 let pulledData = await favoriteSch.findByIdAndUpdate({ _id: favId }, { $set: value }, { new: true });
-                return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, 'property is removed from favorite list', null);
+                return otherHelper.sendResponse(res, httpStatus.OK, true, pulledData, null, 'property is removed from favorite list', null);//del fav
             }
         } else if (propertyStatus) {
             const favorite = {}

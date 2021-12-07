@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(["/auth/verify"]);
       },
       (err) => {
-        this.toastr.info(err.error.msg, " !");
+        this.toastr.info(err.error.msg);
         console.log("error from register.component.ts", err.error.msg);
       }
     );

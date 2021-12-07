@@ -24,7 +24,7 @@ export class VerifyEmailComponent implements OnInit {
     this.authService.verify(this.verify)
       .subscribe((data) => {
         console.log(data)
-        this.toastr.success('Email Verified successfull')
+        this.toastr.success('Email Verified successful')
         this.router.navigate(['/auth/login'])
       }, (err) => {
         console.log(err)
